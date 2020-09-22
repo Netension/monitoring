@@ -28,3 +28,11 @@ jobs:
         
       - name: Run tests
         run: dotnet test ./src/*.sln
+
+      - name: Create NuGet packages
+        run: dotnet pack --Configuration Release ./src/*.sln 
+      
+      - name: Upload build artifacts
+        uses: action/upload-artifact@v2.1.4
+        with:
+          path: ./src/bin/Release/*.nupkg
