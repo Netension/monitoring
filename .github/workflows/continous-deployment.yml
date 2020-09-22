@@ -6,7 +6,8 @@ name: Continous Deployment
 # events but only for the develop branch
 on:
   push:
-    branches: [ develop, master ]
+    tags:
+      - '*'
 
 env:
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
