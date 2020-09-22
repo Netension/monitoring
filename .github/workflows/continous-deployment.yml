@@ -27,18 +27,15 @@ jobs:
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1.7.0
     
-      - name: Setup Sonar Scanner
+      - name: Run analysis and tests
         uses: highbyte/sonarscan-dotnet@1.0
         with:
           sonarHostName: https://sonarqube.mihben.net
           sonarProjectKey: netension_monitoring
           sonarProjectName: .Netension.Monitoring
-      
-      - name: Build
-        run: dotnet build ./src/*.sln --configuration Release
-        
-      - name: Run tests
-        run: dotnet test ./src/*.sln
+          dotnetBuildArguments: ./src/*.sln --configuration Release
+          dotnetTestArguments: ./src/*.sln --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+          sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
 
       - name: Create NuGet packages
         run: dotnet pack ./src/*.sln --configuration Release --output ./artifacts/
