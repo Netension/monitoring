@@ -8,8 +8,4 @@
     <PackageReference Include="prometheus-net.AspNetCore" Version="3.6.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Netension.Monitoring.Abstraction\Netension.Monitoring.Abstraction.csproj" />
-  </ItemGroup>
-
 </Project>
