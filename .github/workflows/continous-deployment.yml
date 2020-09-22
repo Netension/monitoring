@@ -30,9 +30,9 @@ jobs:
         run: dotnet test ./src/*.sln
 
       - name: Create NuGet packages
-        run: dotnet pack ./src/*.sln --configuration Release
+        run: dotnet pack ./src/*.sln --configuration Release --output ./artifacts/
       
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2.1.4
         with:
-          path: ./src/bin/Release/*.nupkg
+          path: ./artifacts/*.nupkg
