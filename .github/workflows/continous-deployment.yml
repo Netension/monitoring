@@ -41,6 +41,9 @@ jobs:
     needs: [build]
     if: success()
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
       - name: Create NuGet packages
         run: dotnet pack ./src/*.sln --configuration Release --output ./artifacts/
       
