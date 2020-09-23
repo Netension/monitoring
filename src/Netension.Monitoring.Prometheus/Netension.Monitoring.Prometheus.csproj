@@ -7,7 +7,12 @@
     <RepositoryUrl>https://github.com/Netension/monitoring</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>monitoring, prometheus</PackageTags>
+    <CodeAnalysisRuleSet>..\.sonarlint\netension_monitoringcsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\netension_monitoring\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="GitVersionTask" Version="5.3.7">
