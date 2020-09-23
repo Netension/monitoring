@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Bence, Mihucza</Authors>
-    <PackageIcon>default.png</PackageIcon>
+    <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/Netension/monitoring</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>monitoring, prometheus</PackageTags>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\..\default.png">
+    <None Include="..\..\logo.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
