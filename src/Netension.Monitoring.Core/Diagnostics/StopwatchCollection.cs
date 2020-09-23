@@ -5,6 +5,7 @@ using System.Diagnostics;
 
 namespace Netension.Monitoring.Core.Diagnostics
 {
+
     /// <summary>
     /// Collection of the stopwatches. Makes easire to handle multiple stopwatches.
     /// </summary>
