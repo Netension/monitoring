@@ -30,12 +30,35 @@ jobs:
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1.7.0
     
-      - name: Run analysis and tests
-        uses: highbyte/sonarscan-dotnet@1.0
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v1
         with:
-          sonarHostName: https://sonarqube.mihben.net
-          sonarProjectKey: netension_monitoring
-          sonarProjectName: .Netension.Monitoring
-          dotnetBuildArguments: ./src/*.sln --configuration Release
-          dotnetTestArguments: ./src/*.sln --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-          sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
+          path: ~\sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+          
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v1
+        with:
+          path: .\.sonar\scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
+
+      - name: Install SonarCloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        shell: pwsh
+        run: |
+          New-Item -Path .\.sonar\scanner -ItemType Directory
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner
+
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: pwsh
+        run: |
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"Netension_monitoring" /o:"netension" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx" sonar.cs.xunit.reportsPaths="**/TestResults/*.xml" 
+          dotnet build ./src/*.sln --configuration Release
+          dotnet test ./src/*.sln --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
