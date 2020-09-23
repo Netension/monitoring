@@ -25,7 +25,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          fetch-depth: 2147483647
+          fetch-depth: 0
       
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1.7.0
