@@ -36,7 +36,7 @@ jobs:
       - name: Run analysis and tests
         uses: highbyte/sonarscan-dotnet@1.0
         with:
-          sonarOrganization: Netension
+          sonarOrganization: netension
           sonarProjectKey: Netension_monitoring
           sonarProjectName: .Netension.Monitoring
           dotnetBuildArguments: ./src/*.sln --configuration Release
