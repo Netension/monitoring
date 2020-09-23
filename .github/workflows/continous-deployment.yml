@@ -6,7 +6,7 @@ name: Continous Deployment
 # events but only for the develop branch
 on:
   push:
-    branches: [ develop ]
+    tags: *
 
 env:
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -48,4 +48,4 @@ jobs:
         run: dotnet pack ./src/*.sln --configuration Release --output ./artifacts/ --include-source --include-symbols
       
       - name: Publish packages
-        run: dotnet push ./artifacts/*.nupkg --api-key ${{ secrets.TEST_NUGET_API_KEY }} -s https://nuget-registry.mihben.net/
+        run: dotnet push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
