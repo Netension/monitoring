@@ -2,10 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Bence, Mihucza</Authors>
+    <PackageIcon>default.png</PackageIcon>
+    <RepositoryUrl>https://github.com/Netension/monitoring</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>monitoring, prometheus</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="5.3.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="prometheus-net.AspNetCore" Version="3.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\default.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
