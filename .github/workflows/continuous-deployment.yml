@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Continous Deployment
+name: Continuous Deployment
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the develop branch
@@ -37,16 +37,3 @@ jobs:
           dotnetBuildArguments: ./src/*.sln --configuration Release
           dotnetTestArguments: ./src/*.sln --logger trx --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           sonarBeginArguments: /d:sonar.cs.opencover.reportsPaths="**/TestResults/**/coverage.opencover.xml" -d:sonar.cs.vstest.reportsPaths="**/TestResults/*.trx"
-  publish:
-    runs-on: ubuntu-latest
-    needs: [build]
-    if: success()
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        
-      - name: Create NuGet packages
-        run: dotnet pack ./src/*.sln --configuration Release --output ./artifacts/ --include-source --include-symbols
-      
-      - name: Publish packages
-        run: dotnet push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
