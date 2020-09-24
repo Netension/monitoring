@@ -37,7 +37,6 @@ namespace Netension.Monitoring.Prometheus
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Description of the metric.</param>
-        /// </example>
         void RegisterCounter(string name, string description);
         /// <summary>
         /// Create and register a <see href="https://prometheus.io/docs/concepts/metric_types/#counter">Counter</see> metric with labels.
@@ -92,7 +91,7 @@ namespace Netension.Monitoring.Prometheus
         /// <summary>
         /// Register <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric.
         /// </summary>
-        /// <param name="histogram"><see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric definition.</param>
+        /// <param name="summary"><see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric definition.</param>
         void RegisterSummary(Summary summary);
         /// <summary>
         /// Create and register <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric.
