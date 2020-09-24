@@ -10,6 +10,10 @@
     <CodeAnalysisRuleSet>..\.sonarlint\netension_monitoringcsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>.\Netension.Monitoring.Prometheus\Documentation\Netension.Monitoring.Prometheus.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <AdditionalFiles Include="..\.sonarlint\netension_monitoring\CSharp\SonarLint.xml" Link="SonarLint.xml" />
   </ItemGroup>

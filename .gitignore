@@ -348,3 +348,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/src/Netension.Monitoring.Core/Netension.Monitoring.Core/Documentation/Netension.Monitoring.Core.xml
+/src/Netension.Monitoring.Prometheus/Netension.Monitoring.Prometheus/Documentation/Netension.Monitoring.Prometheus.xml
