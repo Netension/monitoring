@@ -11,7 +11,7 @@
     <CodeAnalysisRuleSet>..\.sonarlint\netension_monitoringcsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>.\Netension.Monitoring.Core\Documentation\Netension.Monitoring.Core.xml</DocumentationFile>
   </PropertyGroup>
 

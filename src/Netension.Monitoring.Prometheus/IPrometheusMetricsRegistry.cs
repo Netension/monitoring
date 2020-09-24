@@ -21,7 +21,7 @@ namespace Netension.Monitoring.Prometheus
     /// </item>
     /// <item>
     ///     <term><see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see></term>
-    ///     <description>Similar to a histogram, a summary samples observations (usually things like request durations and response sizes).</description>
+    ///     <description>Similar to a <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see>, a <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> samples observations (usually things like request durations and response sizes).</description>
     /// </item>
     /// </list>
     /// </summary>
@@ -69,19 +69,19 @@ namespace Netension.Monitoring.Prometheus
         void RegisterGauge(string name, string description, IEnumerable<string> labels);
 
         /// <summary>
-        /// <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see>
+        /// Register a <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see> metric
         /// </summary>
         /// <param name="histogram"><see href="https://prometheus.io/docs/concepts/metric_types/#gauge">Histogram</see> metric definition.</param>
         void RegisterHistogram(Histogram histogram);
         /// <summary>
-        /// <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see>
+        /// Create and register <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see> metric.
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Description of the metric.</param>
         /// <param name="buckets">Buckets of the metric.</param>
         void RegisterHistogram(string name, string description, IEnumerable<double> buckets);
         /// <summary>
-        /// <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see>
+        /// Create and register <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see> metric.
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Description of the metric.</param>
@@ -90,18 +90,18 @@ namespace Netension.Monitoring.Prometheus
         void RegisterHistogram(string name, string description, IEnumerable<double> buckets, IEnumerable<string> labels);
 
         /// <summary>
-        /// <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see>
+        /// Register <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric.
         /// </summary>
         /// <param name="histogram"><see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric definition.</param>
         void RegisterSummary(Summary summary);
         /// <summary>
-        /// <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see>
+        /// Create and register <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric.
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Description of the metric.</param>
         void RegisterSummary(string name, string description);
         /// <summary>
-        /// <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see>
+        /// Create and register <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric.
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Description of the metric.</param>
