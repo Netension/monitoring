@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Netension.Monitoring.UnitTest")]
 namespace Netension.Monitoring.Prometheus.Containers
 {
-    internal class PrometheusMetricsCollection : IPrometheusMetricsRegistry, ICounterCollection, IGaugeCollection, IHistogramCollection, ISummaryCollection
+    public class PrometheusMetricsCollection : IPrometheusMetricsRegistry, ICounterCollection, IGaugeCollection, IHistogramCollection, ISummaryCollection
     {
         private readonly ILogger<PrometheusMetricsCollection> _logger;
 
@@ -20,6 +20,8 @@ namespace Netension.Monitoring.Prometheus.Containers
         {
             _logger = loggerFactory.CreateLogger<PrometheusMetricsCollection>();
         }
+
+        public static PrometheusMetricsCollection Instance { get; set; }
 
         #region IPrometheusMetricsRegistry
         public void RegisterCounter(Counter counter)
