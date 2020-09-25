@@ -56,7 +56,7 @@ namespace Netension.Monitoring.Prometheus.Containers
         public void RegisterGauge(Gauge gauge)
         {
             _logger.LogDebug("Register {name} metric as {type}.", gauge.Name, "Gauge");
-            if (_counters.Any(c => c.Name.Equals(gauge.Name)))
+            if (_gauges.Any(c => c.Name.Equals(gauge.Name)))
             {
                 _logger.LogWarning("{name} gauge metric exists.", gauge.Name);
                 return;
@@ -79,7 +79,7 @@ namespace Netension.Monitoring.Prometheus.Containers
         public void RegisterHistogram(Histogram histogram)
         {
             _logger.LogDebug("Register {name} metric as {type}.", histogram.Name, "Histogram");
-            if (_counters.Any(c => c.Name.Equals(histogram.Name)))
+            if (_histograms.Any(c => c.Name.Equals(histogram.Name)))
             {
                 _logger.LogWarning("{name} histogram metric exists.", histogram.Name);
                 return;
@@ -102,7 +102,7 @@ namespace Netension.Monitoring.Prometheus.Containers
         public void RegisterSummary(Summary summary)
         {
             _logger.LogDebug("Register {name} metric as {type}.", summary.Name, "Summary");
-            if (_counters.Any(c => c.Name.Equals(summary.Name)))
+            if (_summaries.Any(c => c.Name.Equals(summary.Name)))
             {
                 _logger.LogWarning("{name} summary metric exists.", summary.Name);
                 return;

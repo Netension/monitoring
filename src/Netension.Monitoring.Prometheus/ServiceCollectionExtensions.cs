@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Netension.Monitoring.Prometheus.Containers;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Netension.Monitoring.Prometheus
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    [ExcludeFromCodeCoverage]
     public static class ServiceCollectionExtensions
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     {
