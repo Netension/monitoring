@@ -1,6 +1,7 @@
 ﻿using Netension.Core;
 using Prometheus;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Netension.Monitoring.Prometheus.Enumerations
@@ -8,6 +9,7 @@ namespace Netension.Monitoring.Prometheus.Enumerations
     /// <summary>
     /// <see cref="Enumeration"/> class of a <see cref="Histogram"/> prometheus metric.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class HistogramPrometheusMetricEnumeration : PrometheusMetricEnumeration
     {
         /// <summary>
