@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
+[assembly:InternalsVisibleTo("Netension.Monitoring.UnitTest")]
 namespace Netension.Monitoring.Prometheus.CustomMetrics
 {
 

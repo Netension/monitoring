@@ -1,5 +1,6 @@
 ﻿using Moq;
 using Netension.Monitoring.Prometheus;
+using Netension.Monitoring.Prometheus.CustomMetrics;
 using System.Text;
 using Xunit;
 
