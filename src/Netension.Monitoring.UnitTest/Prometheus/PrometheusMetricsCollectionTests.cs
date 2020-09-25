@@ -345,7 +345,7 @@ namespace Netension.Monitoring.UnitTest.Prometheus
             // Arrange
             var sut = CreateSUT();
             var namesGenerator = new NamesGenerator();
-            var metric = Metrics.CreateHistogram(namesGenerator.GetRandomName(), namesGenerator.GetRandomName(), new HistogramConfiguration { Buckets = new double[] { 1.0, 2.0 } , LabelNames = new string[] { namesGenerator.GetRandomName() } });
+            var metric = Metrics.CreateHistogram(namesGenerator.GetRandomName(), namesGenerator.GetRandomName(), new HistogramConfiguration { Buckets = new double[] { 1.0, 2.0 }, LabelNames = new string[] { namesGenerator.GetRandomName() } });
 
             // Act
             sut.RegisterHistogram(metric);
@@ -420,7 +420,7 @@ namespace Netension.Monitoring.UnitTest.Prometheus
 
             // Act
             // Assert
-            Assert.Throws<InvalidOperationException>(() => sut[new NamesGenerator().GetRandomName()] );
+            Assert.Throws<InvalidOperationException>(() => sut[new NamesGenerator().GetRandomName()]);
         }
 
         [Fact(DisplayName = "Observe Histogram")]
@@ -525,6 +525,24 @@ namespace Netension.Monitoring.UnitTest.Prometheus
             // Act
             // Assert
             Assert.Throws<InvalidOperationException>(() => sut[new NamesGenerator().GetRandomName()]);
+        }
+
+        [Fact]
+        public void PrometheusMetricsCollection_StartDurationMeasure()
+        {
+            // Arrange
+            var collection = CreateSUT();
+            var sut = (ISummaryCollection)collection;
+            var namesGenerator = new NamesGenerator();
+            var name = namesGenerator.GetRandomName();
+            var labels = new string[] { namesGenerator.GetRandomName() };
+
+            // Act
+            var result = sut.StartDurationMeasurement(name, labels);
+
+            // Assert
+            Assert.Equal(name, result.Name);
+            Assert.Equal(labels, result.Labels);
         }
         #endregion
     }

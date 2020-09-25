@@ -1,4 +1,5 @@
-﻿using Prometheus;
+﻿using Netension.Monitoring.Prometheus.CustomMetrics;
+using Prometheus;
 using System;
 
 namespace Netension.Monitoring.Prometheus
@@ -24,5 +25,21 @@ namespace Netension.Monitoring.Prometheus
         /// <param name="labels">Labels of the <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric.</param>
         ///  <exception cref="InvalidOperationException">Throws, if <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> does not exist with given key.</exception>
         void Observe(string name, double value, params string[] labels);
+
+        /// <summary>
+        /// Start a new duration metric.
+        /// </summary>
+        /// <param name="name">Name of the metric.</param>
+        /// <param name="labels">Labels of the metric.</param>
+        /// <returns><see cref="IDurationMetric"/> instance, duration is measured by this instance.</returns>
+        /// <example>
+        /// <code>
+        /// using (summaryCollection.StartDurationMeasurement("Example", "Example")
+        /// {
+        ///     // SQL Statements
+        /// }
+        /// </code>
+        /// </example>
+        IDurationMetric StartDurationMeasurement(string name, params string[] labels);
     }
 }

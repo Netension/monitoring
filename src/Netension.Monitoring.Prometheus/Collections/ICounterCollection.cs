@@ -1,5 +1,5 @@
-﻿using System;
-using Prometheus;
+﻿using Prometheus;
+using System;
 
 namespace Netension.Monitoring.Prometheus
 {
