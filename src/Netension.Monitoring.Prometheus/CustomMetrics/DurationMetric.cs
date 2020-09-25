@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 [assembly:InternalsVisibleTo("Netension.Monitoring.UnitTest")]
@@ -22,6 +23,7 @@ namespace Netension.Monitoring.Prometheus.CustomMetrics
             _stopwatch = Stopwatch.StartNew();
         }
 
+        [ExcludeFromCodeCoverage]
         protected virtual void Dispose(bool disposing)
         {
             if (!disposing) return;
@@ -30,6 +32,7 @@ namespace Netension.Monitoring.Prometheus.CustomMetrics
             _summaryCollection.Observe(Name, _stopwatch.Elapsed.TotalMilliseconds, Labels);
         }
 
+        [ExcludeFromCodeCoverage]
         public void Dispose()
         {
             Dispose(true);

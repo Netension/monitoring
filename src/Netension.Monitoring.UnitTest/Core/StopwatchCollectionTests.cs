@@ -35,6 +35,22 @@ namespace Netension.Monitoring.UnitTest.Core
             Assert.NotEqual(TimeSpan.Zero, sut[key]);
         }
 
+        [Fact(DisplayName = "Start existing stopwatch")]
+        public void StopwatchCollection_Start_StartExistingStopwatch()
+        {
+            // Arrange
+            var sut = CreateSUT();
+            var key = new NamesGenerator().GetRandomName();
+
+            sut.Start(key);
+
+            // Act
+            sut.Start(key);
+
+            // Assert - Did not throw exception
+            Assert.True(true);
+        }
+
         [Fact(DisplayName = "Stop not existings stopwatch")]
         public void StopwatchCollection_Stop_StopNotExistingStopwatch()
         {

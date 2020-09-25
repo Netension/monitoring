@@ -25,6 +25,23 @@ namespace Netension.Monitoring.UnitTest.Prometheus
         }
 
         #region Counter
+        [Fact(DisplayName = "Register Counter multiple times")]
+        public void PrometheusMetricsCollection_RegisterCounter_MultipleTimes()
+        {
+            // Arrange
+            var sut = CreateSUT();
+            var namesGenerator = new NamesGenerator();
+            var metric = Metrics.CreateCounter(namesGenerator.GetRandomName(), namesGenerator.GetRandomName(), new string[] { namesGenerator.GetRandomName() });
+
+            sut.RegisterCounter(metric);
+
+            // Act
+            sut.RegisterCounter(metric);
+
+            // Assert - Did not throw exception
+            Assert.True(true);
+        }
+
         [Fact(DisplayName = "Register Counter with definition")]
         public void PrometheusMetricsCollection_RegisterCounter_Definition()
         {
@@ -154,6 +171,23 @@ namespace Netension.Monitoring.UnitTest.Prometheus
         #endregion
 
         #region Gauge
+        [Fact(DisplayName = "Register gauge muliptle times")]
+        public void PrometheusMetricsCollection_RegisterGauge_MultipleTimes()
+        {
+            // Arrange
+            var sut = CreateSUT();
+            var namesGenerator = new NamesGenerator();
+            var metric = Metrics.CreateGauge(namesGenerator.GetRandomName(), namesGenerator.GetRandomName(), new string[] { namesGenerator.GetRandomName() });
+
+            sut.RegisterGauge(metric);
+
+            // Act
+            sut.RegisterGauge(metric);
+
+            // Assert - Did not throw exception
+            Assert.True(true);
+        }
+
         [Fact(DisplayName = "Register gauge with definition")]
         public void PrometheusMetricsCollection_RegisterGauge_Definition()
         {
@@ -339,6 +373,23 @@ namespace Netension.Monitoring.UnitTest.Prometheus
         #endregion
 
         #region Histogram
+        [Fact(DisplayName = "Register Histogram multiple times")]
+        public void PrometheusMetricsCollection_RegisterHistogram_MultipleTimes()
+        {
+            // Arrange
+            var sut = CreateSUT();
+            var namesGenerator = new NamesGenerator();
+            var metric = Metrics.CreateHistogram(namesGenerator.GetRandomName(), namesGenerator.GetRandomName(), new HistogramConfiguration { Buckets = new double[] { 1.0, 2.0 }, LabelNames = new string[] { namesGenerator.GetRandomName() } });
+
+            sut.RegisterHistogram(metric);
+
+            // Act
+            sut.RegisterHistogram(metric);
+
+            // Assert - Did not throw exception
+            Assert.True(true);
+        }
+
         [Fact(DisplayName = "Register Histogram with definition")]
         public void PrometheusMetricsCollection_RegisterHistogram_Definition()
         {
@@ -445,6 +496,23 @@ namespace Netension.Monitoring.UnitTest.Prometheus
         #endregion
 
         #region Summary
+        [Fact(DisplayName = "Register Summary multiple times")]
+        public void PrometheusMetricsCollection_RegisterSummary_MultipleTimes()
+        {
+            // Arrange
+            var sut = CreateSUT();
+            var namesGenerator = new NamesGenerator();
+            var metric = Metrics.CreateSummary(namesGenerator.GetRandomName(), namesGenerator.GetRandomName(), new string[] { namesGenerator.GetRandomName() });
+
+            sut.RegisterSummary(metric);
+
+            // Act
+            sut.RegisterSummary(metric);
+
+            // Assert - Did not throw exception
+            Assert.True(true);
+        }
+
         [Fact(DisplayName = "Register Summary with definition")]
         public void PrometheusMetricsCollection_RegisterSummary_Definition()
         {
