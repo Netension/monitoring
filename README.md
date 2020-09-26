@@ -9,13 +9,13 @@ A software metric is a measure of software characteristics which are quantifiabl
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Netension_monitoring&metric=bugs)](https://sonarcloud.io/dashboard?id=Netension_monitoring)
 
 # Packages
-## [Netension.Monitoring.Core](https://www.nuget.org/packages/Netension.Monitoring.Core/) ![Nuget](https://img.shields.io/nuget/v/Netension.Monitoring.Core?label=Netension.Monitoring.Core&style=plastic)
+## [Netension.Monitoring.Core](https://www.nuget.org/packages/Netension.Monitoring.Core/) ![Nuget](https://img.shields.io/nuget/v/Netension.Monitoring.Core?label=NuGet&style=plastic)
 Provides generally used types for metrics produce.
 
 ### StopwatchCollection
 Supports to manage multiple stopwatches in an application.
 
-## [Netension.Monitoring.Prometheus](https://www.nuget.org/packages/Netension.Monitoring.Prometheus/) ![Nuget](https://img.shields.io/nuget/v/Netension.Monitoring.Prometheus?label=Netension.Monitoring.Prometheus&style=plastic)
+## [Netension.Monitoring.Prometheus](https://www.nuget.org/packages/Netension.Monitoring.Prometheus/) ![Nuget](https://img.shields.io/nuget/v/Netension.Monitoring.Prometheus?label=NuGet&style=plastic)
 Makes easier to use the [Prometheus](https://prometheus.io/) metrics.
 
 [Prometheus](https://prometheus.io/) is an open-source systems monitoring and alerting toolkit.<br/>
