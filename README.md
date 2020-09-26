@@ -55,10 +55,10 @@ __2. step - Push metric value:__ Push metric value via metric collections.
 ```csharp
 public class ExampleClass
 {
-   var _counterCollection;
-   var _gaugeCollection ;
-   var _histogramCollection ;
-   var _summaryCollection ;
+   private readonly ICounterCollection _counterCollection;
+   private readonly IGaugeCollection _gaugeCollection ;
+   private readonly IHistogramCollection _histogramCollection ;
+   private readonly ISummaryCollection _summaryCollection ;
 
     public ExampleClass(ICounterCollection counterCollection, IGaugeCollection gaugeCollection, IHistogramCollection histogramCollection, ISummaryCollection summaryCollection)
     {
