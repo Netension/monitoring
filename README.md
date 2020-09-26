@@ -14,8 +14,8 @@ Provides generally used types for metrics produce.
 
 ### StopwatchCollection
 Supports to manage multiple stopwatches in an application.
----
 
+---
 ## [Netension.Monitoring.Prometheus](https://www.nuget.org/packages/Netension.Monitoring.Prometheus/) ![Nuget](https://img.shields.io/nuget/v/Netension.Monitoring.Prometheus?label=NuGet&logo=NuGet&style=plastic)
 Makes easier to use the [Prometheus](https://prometheus.io/) metrics.
 
