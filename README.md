@@ -34,3 +34,59 @@ The package define the following interfaces and types:
 - __IGaugeCollection__: Manage [Prometheus](https://prometheus.io/)'s [Gauge](https://prometheus.io/docs/concepts/metric_types/#gauge) metric type.
 - __IHistogramCollection__: Manage [Prometheus](https://prometheus.io/)'s [Histogram](https://prometheus.io/docs/concepts/metric_types/#histogram) metric type.
 - __ISummaryCollection__: Manage [Prometheus](https://prometheus.io/)'s [Summary](https://prometheus.io/docs/concepts/metric_types/#summary) metric type.
+
+### Usage in [.NET Core](https://docs.microsoft.com/en-us/dotnet/core/introduction)
+__1. step - Register metrics:__ Register neccessary types and metrics with ```AddPrometheusMetrics()``` [```IServiceCollection```](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection?view=dotnet-plat-ext-3.1) extension method.
+```csharp
+public void Configure(IServiceCollection services)
+{
+    services.AddPrometheusMetrics((registry) => 
+    {
+        registry.RegisterCounter("counter", "Example Counter.");
+        registry.RegisterGauge("gauge", "Example Gauge.");
+        registry.RegisterHistogram("histogram", "Example Histogram.");
+        registry.RegisterSummary("summary", "Example Summary.");
+    });
+}
+```
+
+__2. step - Push metric value:__ Push metric value via metric collections.
+
+```csharp
+public class ExampleClass
+{
+   var _counterCollection;
+   var _gaugeCollection ;
+   var _histogramCollection ;
+   var _summaryCollection ;
+
+    public ExampleClass(ICounterCollection counterCollection, IGaugeCollection gaugeCollection, IHistogramCollection histogramCollection, ISummaryCollection summaryCollection)
+    {
+        _counterCollection = counterCollection;
+        _gaugeCollection = gaugeCollection;
+        _histogramCollection = histogramCollection;
+        _summaryCollection = summaryCollection;
+    }
+
+    public void Method()
+    {
+        // Push Counter value
+        _counterCollection.Increase("counter");
+
+        // Push Gauge value
+        _gaugeCollection.Increase("gauge");
+
+        // Push Histogram value
+        _histogramCollection.Increase("histogram", 5.0);
+
+        // Push Summary value
+        _summaryCollection.Increase("summary", 5.0);
+
+       // Push duration
+       using (_summaryCollection.StartDurationMeasurement("summary"))
+       {
+           // Do something
+       }
+    }
+}
+```
