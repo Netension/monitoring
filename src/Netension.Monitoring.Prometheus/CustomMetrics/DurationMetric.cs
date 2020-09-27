@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prometheus;
+using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
@@ -6,18 +7,18 @@ using System.Runtime.CompilerServices;
 [assembly:InternalsVisibleTo("Netension.Monitoring.UnitTest")]
 namespace Netension.Monitoring.Prometheus.CustomMetrics
 {
-
+    [ExcludeFromCodeCoverage]
     internal class DurationMetric : IDurationMetric
     {
-        private readonly ISummaryCollection _summaryCollection;
+        private readonly Summary _summary;
         private readonly Stopwatch _stopwatch;
 
         public string Name { get; }
         public string[] Labels { get; }
 
-        public DurationMetric(ISummaryCollection summaryCollection, string name, params string[] labels)
+        public DurationMetric(Summary summary, string name, params string[] labels)
         {
-            _summaryCollection = summaryCollection;
+            _summary = summary;
             Name = name;
             Labels = labels;
             _stopwatch = Stopwatch.StartNew();
@@ -29,7 +30,7 @@ namespace Netension.Monitoring.Prometheus.CustomMetrics
             if (!disposing) return;
 
             _stopwatch.Stop();
-            _summaryCollection.Observe(Name, _stopwatch.Elapsed.TotalMilliseconds, Labels);
+            _summary.WithLabels(Labels).Observe(_stopwatch.Elapsed.TotalMilliseconds);
         }
 
         [ExcludeFromCodeCoverage]

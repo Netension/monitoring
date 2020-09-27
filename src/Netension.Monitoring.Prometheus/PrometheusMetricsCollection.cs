@@ -219,7 +219,7 @@ namespace Netension.Monitoring.Prometheus.Containers
 
         IDurationMetric ISummaryCollection.StartDurationMeasurement(string name, params string[] labels)
         {
-            return new DurationMetric(this, name, labels);
+            return new DurationMetric(((ISummaryCollection)this)[name], name, labels);
         }
         #endregion
     }
