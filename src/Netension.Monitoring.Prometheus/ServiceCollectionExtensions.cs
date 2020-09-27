@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Netension.Monitoring.Prometheus.Containers;
+using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Netension.Monitoring.Prometheus
@@ -13,19 +14,25 @@ namespace Netension.Monitoring.Prometheus
         /// <summary>
         /// Registers Prometheus metrics's objects.
         /// </summary>
-        /// <param name="loggerFactory"><see cref="ILoggerFactory"/> instance.</param>
+        /// <param name="registrate">Registrate metrics to be used.</param>
 #pragma warning disable CS1573 // Parameter has no matching param tag in the XML comment (but other parameters do)
-        public static IServiceCollection AddPrometheusMetricsCollection(this IServiceCollection services, ILoggerFactory loggerFactory)
+        public static IServiceCollection AddPrometheusMetrics(this IServiceCollection services, Action<IPrometheusMetricsRegistry, IServiceProvider> registrate)
 #pragma warning restore CS1573 // Parameter has no matching param tag in the XML comment (but other parameters do)
         {
-            var collection = new PrometheusMetricsCollection(loggerFactory);
-            PrometheusMetricsCollection.Instance = collection;
 
-            services.AddSingleton<IPrometheusMetricsRegistry>(collection);
-            services.AddSingleton<ICounterCollection>(collection);
-            services.AddSingleton<IGaugeCollection>(collection);
-            services.AddSingleton<ISummaryCollection>(collection);
-            services.AddSingleton<IHistogramCollection>(collection);
+            services.AddSingleton((context) =>
+            {
+                PrometheusMetricsCollection.Instance = new PrometheusMetricsCollection(context.GetService<ILoggerFactory>());
+
+                registrate(PrometheusMetricsCollection.Instance, context);
+
+                return PrometheusMetricsCollection.Instance;
+            });
+
+            services.AddSingleton<ICounterCollection>(PrometheusMetricsCollection.Instance);
+            services.AddSingleton<IGaugeCollection>(PrometheusMetricsCollection.Instance);
+            services.AddSingleton<ISummaryCollection>(PrometheusMetricsCollection.Instance);
+            services.AddSingleton<IHistogramCollection>(PrometheusMetricsCollection.Instance);
 
             return services;
         }
