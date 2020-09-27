@@ -37,9 +37,9 @@ The package define the following interfaces and types:
 - __ISummaryCollection__: Manage [Prometheus](https://prometheus.io/)'s [Summary](https://prometheus.io/docs/concepts/metric_types/#summary) metric type.
 
 ### Usage in [.NET Core](https://docs.microsoft.com/en-us/dotnet/core/introduction)
-Install [Netension.Monitoring.Prometheus](https://www.nuget.org/packages/Netension.Monitoring.Prometheus/) NuGet package.
+__1. step - Install NuGet:__ [Netension.Monitoring.Prometheus](https://www.nuget.org/packages/Netension.Monitoring.Prometheus/) NuGet package.
 
-__1. step - Register metrics:__ Register neccessary types and metrics with ```AddPrometheusMetrics()``` [```IServiceCollection```](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection?view=dotnet-plat-ext-3.1) extension method.
+__2. step - Register metrics:__ Register neccessary types and metrics with ```AddPrometheusMetrics()``` [```IServiceCollection```](https://docs.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection?view=dotnet-plat-ext-3.1) extension method.
 ```csharp
 public void Configure(IServiceCollection services)
 {
@@ -53,7 +53,7 @@ public void Configure(IServiceCollection services)
 }
 ```
 
-__2. step - Push metric value:__ Push metric value via metric collections.
+__3. step - Push metric value:__ Push metric value via metric collections.
 
 ```csharp
 public class ExampleClass
