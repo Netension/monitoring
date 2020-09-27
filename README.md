@@ -43,7 +43,7 @@ __2. step - Register metrics:__ Register neccessary types and metrics with ```Ad
 ```csharp
 public void Configure(IServiceCollection services)
 {
-    services.AddPrometheusMetrics((registry) => 
+    services.AddPrometheusMetrics((registry, context) => 
     {
         registry.RegisterCounter("counter", "Example Counter.");
         registry.RegisterGauge("gauge", "Example Gauge.");
