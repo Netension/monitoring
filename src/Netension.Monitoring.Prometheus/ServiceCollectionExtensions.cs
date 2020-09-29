@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Netension.Monitoring.Prometheus.Containers;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Dynamic;
 
 namespace Netension.Monitoring.Prometheus
 {
@@ -29,10 +30,11 @@ namespace Netension.Monitoring.Prometheus
                 return PrometheusMetricsCollection.Instance;
             });
 
-            services.AddSingleton<ICounterCollection>(PrometheusMetricsCollection.Instance);
-            services.AddSingleton<IGaugeCollection>(PrometheusMetricsCollection.Instance);
-            services.AddSingleton<ISummaryCollection>(PrometheusMetricsCollection.Instance);
-            services.AddSingleton<IHistogramCollection>(PrometheusMetricsCollection.Instance);
+            services.AddSingleton<IPrometheusMetricsRegistry>((context) => context.GetRequiredService<PrometheusMetricsCollection>());
+            services.AddSingleton<ICounterCollection>((context) => context.GetRequiredService<PrometheusMetricsCollection>());
+            services.AddSingleton<IGaugeCollection>((context) => context.GetRequiredService<PrometheusMetricsCollection>());
+            services.AddSingleton<ISummaryCollection>((context) => context.GetRequiredService<PrometheusMetricsCollection>());
+            services.AddSingleton<IHistogramCollection>((context) => context.GetRequiredService<PrometheusMetricsCollection>());
 
             return services;
         }
