@@ -605,6 +605,8 @@ namespace Netension.Monitoring.UnitTest.Prometheus
             var name = namesGenerator.GetRandomName();
             var labels = new string[] { namesGenerator.GetRandomName() };
 
+            collection.RegisterSummary(name, string.Empty);
+
             // Act
             var result = sut.StartDurationMeasurement(name, labels);
 
