@@ -28,6 +28,23 @@ namespace Netension.Monitoring.Prometheus
     public interface IPrometheusMetricsRegistry
     {
         /// <summary>
+        /// <see cref="ICounterManager"/> instance.
+        /// </summary>
+        ICounterManager CounterManager { get; }
+        /// <summary>
+        /// <see cref="IGaugeManager"/> instance.
+        /// </summary>
+        IGaugeManager GaugeManager { get; }
+        /// <summary>
+        /// <see cref="IHistogramManager"/> instance.
+        /// </summary>
+        IHistogramManager HistogramManager { get; }
+        /// <summary>
+        /// <see cref="ISummaryManager"/> instance.
+        /// </summary>
+        ISummaryManager SummaryManager { get; }
+
+        /// <summary>
         /// Registrate a <see href="https://prometheus.io/docs/concepts/metric_types/#counter">Counter</see> metric.
         /// </summary>
         /// <param name="counter"><see href="https://prometheus.io/docs/concepts/metric_types/#counter">Counter</see> metric definition.</param>

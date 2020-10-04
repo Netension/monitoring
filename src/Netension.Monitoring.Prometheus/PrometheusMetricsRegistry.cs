@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Netension.Monitoring.Prometheus
 {
-    public class PrometheusMetricsRegistry : IPrometheusMetricsRegistry
+    internal class PrometheusMetricsRegistry : IPrometheusMetricsRegistry
     {
         private readonly ILogger<PrometheusMetricsRegistry> _logger;
         private readonly PrometheusMetricsCollection _metrics;
@@ -17,12 +17,12 @@ namespace Netension.Monitoring.Prometheus
 
         [ExcludeFromCodeCoverage]
         public ICounterManager CounterManager => new CounterManager(_metrics, _loggerFactory);
-
         [ExcludeFromCodeCoverage]
         public IGaugeManager GaugeManager => new GaugeManager(_metrics, _loggerFactory);
-
         [ExcludeFromCodeCoverage]
         public IHistogramManager HistogramManager => new HistogramManager(_metrics, _loggerFactory);
+        [ExcludeFromCodeCoverage]
+        public ISummaryManager SummaryManager => new SummaryManager(_metrics, _loggerFactory);
 
         public PrometheusMetricsRegistry(PrometheusMetricsCollection metrics, ILoggerFactory loggerFactory)
         {
