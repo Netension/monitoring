@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Moq;
 using Netension.Monitoring.Core.Models;
 using Netension.Monitoring.Prometheus;
 using Netension.Monitoring.Prometheus.Collections;

@@ -6,7 +6,7 @@ using Netension.Monitoring.Prometheus.Managers;
 namespace Netension.Monitoring.Prometheus
 {
     public static class ServiceCollectionExtensions
-    {   
+    {
         public static IPrometheusMetricsRegistry AddPrometheusMetrics(this IServiceCollection services, ILoggerFactory loggerFactory)
         {
             var collection = new PrometheusMetricsCollection();

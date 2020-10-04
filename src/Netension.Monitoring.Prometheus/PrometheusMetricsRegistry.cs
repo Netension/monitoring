@@ -21,6 +21,9 @@ namespace Netension.Monitoring.Prometheus
         [ExcludeFromCodeCoverage]
         public IGaugeManager GaugeManager => new GaugeManager(_metrics, _loggerFactory);
 
+        [ExcludeFromCodeCoverage]
+        public IHistogramManager HistogramManager => new HistogramManager(_metrics, _loggerFactory);
+
         public PrometheusMetricsRegistry(PrometheusMetricsCollection metrics, ILoggerFactory loggerFactory)
         {
             _logger = loggerFactory.CreateLogger<PrometheusMetricsRegistry>();

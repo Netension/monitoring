@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using Prometheus;
+﻿using Prometheus;
 using System.Collections.Generic;
 
 namespace Netension.Monitoring.Prometheus

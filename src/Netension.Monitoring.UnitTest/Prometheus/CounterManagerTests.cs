@@ -3,11 +3,7 @@ using Netension.Monitoring.Core.Models;
 using Netension.Monitoring.Prometheus.Collections;
 using Netension.Monitoring.Prometheus.Managers;
 using Prometheus;
-using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 

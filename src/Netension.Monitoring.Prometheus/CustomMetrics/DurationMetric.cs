@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-[assembly:InternalsVisibleTo("Netension.Monitoring.UnitTest")]
+[assembly: InternalsVisibleTo("Netension.Monitoring.UnitTest")]
 namespace Netension.Monitoring.Prometheus.CustomMetrics
 {
     [ExcludeFromCodeCoverage]

@@ -1,5 +1,4 @@
-﻿using Castle.Core;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Netension.Monitoring.Core.Models;
 using Netension.Monitoring.Prometheus.Collections;
 using Netension.Monitoring.Prometheus.Managers;

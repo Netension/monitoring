@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Server.Kestrel.Core.Features;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Netension.Monitoring.Prometheus.Collections;
 using Prometheus;
-using System;
 
 namespace Netension.Monitoring.Prometheus.Managers
 {
