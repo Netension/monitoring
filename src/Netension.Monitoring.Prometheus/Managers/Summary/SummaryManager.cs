@@ -29,7 +29,7 @@ namespace Netension.Monitoring.Prometheus.Managers
             }
 
             _logger.LogDebug("{name} {type} metric observe with {value}.", name, TYPE, value);
-            metric.Observe(value);
+            metric.WithLabels(labels).Observe(value);
         }
 
         public IDurationMetric MeasureDuration(string name, params string[] labels)
