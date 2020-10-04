@@ -6,7 +6,7 @@ namespace Netension.Monitoring.Prometheus
     /// <summary>
     /// Manage <see href="https://prometheus.io/docs/concepts/metric_types/#gauge">Gauge</see> metrics.
     /// </summary>
-    public interface IGaugeCollection
+    public interface IGaugeManager
     {
         /// <summary>
         /// Get <see href="https://prometheus.io/docs/concepts/metric_types/#gauge">Gauge</see> from the collection.

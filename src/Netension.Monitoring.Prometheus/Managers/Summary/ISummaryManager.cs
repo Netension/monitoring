@@ -7,7 +7,7 @@ namespace Netension.Monitoring.Prometheus
     /// <summary>
     /// Manage <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metrics.
     /// </summary>
-    public interface ISummaryCollection
+    public interface ISummaryManager
     {
         /// <summary>
         /// Get <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> from the collection.
@@ -40,6 +40,6 @@ namespace Netension.Monitoring.Prometheus
         /// }
         /// </code>
         /// </example>
-        IDurationMetric StartDurationMeasurement(string name, params string[] labels);
+        IDurationMetric MeasureDuration(string name, params string[] labels);
     }
 }
