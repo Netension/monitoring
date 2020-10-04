@@ -11,12 +11,12 @@ namespace Netension.Monitoring.Prometheus
         {
             var collection = new PrometheusMetricsCollection();
 
-            services.AddTransient<ICounterManager>((context) => new CounterManager(collection));
+            services.AddTransient<ICounterManager>((context) => new CounterManager(collection, loggerFactory));
             services.AddTransient<IGaugeManager>((context) => new GaugeManager(collection));
             //services.AddSingleton<ISummaryCollection>((context) => context.GetRequiredService<PrometheusMetricsContainer>());
             //services.AddSingleton<IHistogramCollection>((context) => context.GetRequiredService<PrometheusMetricsContainer>());
 
-            return new PrometheusMetricsRegistry(collection, new CounterManager(collection), new GaugeManager(collection), loggerFactory);
+            return new PrometheusMetricsRegistry(collection, new CounterManager(collection, loggerFactory), new GaugeManager(collection), loggerFactory);
         }
     }
 }

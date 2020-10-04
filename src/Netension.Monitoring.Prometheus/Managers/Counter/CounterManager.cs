@@ -1,4 +1,5 @@
-﻿using Netension.Monitoring.Prometheus.Collections;
+﻿using Microsoft.Extensions.Logging;
+using Netension.Monitoring.Prometheus.Collections;
 using Prometheus;
 
 namespace Netension.Monitoring.Prometheus.Managers
@@ -7,32 +8,49 @@ namespace Netension.Monitoring.Prometheus.Managers
     internal class CounterManager : ICounterManager
     {
         private readonly PrometheusMetricsCollection _metrics;
+        private readonly ILogger<CounterManager> _logger;
 
         /// <inheritdoc/>
-        public CounterManager(PrometheusMetricsCollection metrics)
+        public CounterManager(PrometheusMetricsCollection metrics, ILoggerFactory loggerFactory)
         {
             _metrics = metrics;
+            _logger = loggerFactory.CreateLogger<CounterManager>();
         }
 
         /// <inheritdoc/>
-        public Counter this[string name] { get { return _metrics.GetCounter(name).Metric; } }
+        public Counter this[string name] { get { return _metrics.GetCounter(name)?.Metric; } }
 
         /// <inheritdoc/>
         public void Increase(string name, params string[] labels)
         {
-            this[name].WithLabels(labels).Inc(1.0);
+            Increase(name, 1.0, labels);
         }
 
         /// <inheritdoc/>
         public void Increase(string name, double increment, params string[] labels)
         {
-            this[name].WithLabels(labels).Inc(increment);
+            var metric = this[name];
+            if (metric == null)
+            {
+                _logger.LogWarning("{name} {type} metric not found.", name, "Counter");
+                return;
+            }
+
+            _logger.LogDebug("{name} {type} metric increase with {value}", name, "Counter", increment);
+            metric.WithLabels(labels).Inc(increment);
         }
 
         /// <inheritdoc/>
         public void Set(string name, double value, params string[] labels)
         {
-            this[name].WithLabels(labels).IncTo(value);
+            var metric = this[name];
+            if (metric == null)
+            {
+                _logger.LogWarning("{name} {type} metric not found.", name, "Counter");
+                return;
+            }
+
+            metric.WithLabels(labels).IncTo(value);
         }
     }
 }
