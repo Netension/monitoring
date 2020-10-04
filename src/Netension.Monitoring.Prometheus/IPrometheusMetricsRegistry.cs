@@ -1,4 +1,5 @@
-﻿using Prometheus;
+﻿using Microsoft.Extensions.Logging;
+using Prometheus;
 using System.Collections.Generic;
 
 namespace Netension.Monitoring.Prometheus
@@ -28,83 +29,83 @@ namespace Netension.Monitoring.Prometheus
     public interface IPrometheusMetricsRegistry
     {
         /// <summary>
-        /// Register a <see href="https://prometheus.io/docs/concepts/metric_types/#counter">Counter</see> metric.
+        /// Registrate a <see href="https://prometheus.io/docs/concepts/metric_types/#counter">Counter</see> metric.
         /// </summary>
         /// <param name="counter"><see href="https://prometheus.io/docs/concepts/metric_types/#counter">Counter</see> metric definition.</param>
-        void RegisterCounter(Counter counter);
+        IPrometheusMetricsRegistry RegistrateCounter(Counter counter);
         /// <summary>
-        /// Create and register a <see href="https://prometheus.io/docs/concepts/metric_types/#counter">Counter</see> metric.
+        /// Create and registrate a <see href="https://prometheus.io/docs/concepts/metric_types/#counter">Counter</see> metric.
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Description of the metric.</param>
-        void RegisterCounter(string name, string description);
+        IPrometheusMetricsRegistry RegistrateCounter(string name, string description);
         /// <summary>
-        /// Create and register a <see href="https://prometheus.io/docs/concepts/metric_types/#counter">Counter</see> metric with labels.
+        /// Create and registrate a <see href="https://prometheus.io/docs/concepts/metric_types/#counter">Counter</see> metric with labels.
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Description of the metric.</param>
         /// <param name="labels">Labels of the metric.</param>
-        void RegisterCounter(string name, string description, IEnumerable<string> labels);
+        IPrometheusMetricsRegistry RegistrateCounter(string name, string description, IEnumerable<string> labels);
 
         /// <summary>
-        /// Register a <see href="https://prometheus.io/docs/concepts/metric_types/#gauge">Gauge</see> metric.
+        /// Registrate a <see href="https://prometheus.io/docs/concepts/metric_types/#gauge">Gauge</see> metric.
         /// </summary>
         /// <param name="gauge"><see href="https://prometheus.io/docs/concepts/metric_types/#gauge">Gauge</see> metric definition.</param>
-        void RegisterGauge(Gauge gauge);
+        IPrometheusMetricsRegistry RegistrateGauge(Gauge gauge);
 
         /// <summary>
-        /// Register a <see href="https://prometheus.io/docs/concepts/metric_types/#gauge">Gauge</see> metric.
+        /// Registrate a <see href="https://prometheus.io/docs/concepts/metric_types/#gauge">Gauge</see> metric.
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Descripton of the metric.</param>
-        void RegisterGauge(string name, string description);
+        IPrometheusMetricsRegistry RegistrateGauge(string name, string description);
 
         /// <summary>
-        /// Register a <see href="https://prometheus.io/docs/concepts/metric_types/#gauge">Gauge</see> metric.
+        /// Registrate a <see href="https://prometheus.io/docs/concepts/metric_types/#gauge">Gauge</see> metric.
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Descripton of the metric.</param>
         /// <param name="labels">Labels of the metric.</param>
-        void RegisterGauge(string name, string description, IEnumerable<string> labels);
+        IPrometheusMetricsRegistry RegistrateGauge(string name, string description, IEnumerable<string> labels);
 
         /// <summary>
-        /// Register a <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see> metric
+        /// Registrate a <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see> metric
         /// </summary>
         /// <param name="histogram"><see href="https://prometheus.io/docs/concepts/metric_types/#gauge">Histogram</see> metric definition.</param>
-        void RegisterHistogram(Histogram histogram);
+        IPrometheusMetricsRegistry RegistrateHistogram(Histogram histogram);
         /// <summary>
         /// Create and register <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see> metric.
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Description of the metric.</param>
         /// <param name="buckets">Buckets of the metric.</param>
-        void RegisterHistogram(string name, string description, IEnumerable<double> buckets);
+        IPrometheusMetricsRegistry RegistrateHistogram(string name, string description, IEnumerable<double> buckets);
         /// <summary>
-        /// Create and register <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see> metric.
+        /// Create and registrate <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see> metric.
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Description of the metric.</param>
         /// <param name="buckets">Buckets of the metric.</param>
         /// <param name="labels">Labels of the metric.</param>
-        void RegisterHistogram(string name, string description, IEnumerable<double> buckets, IEnumerable<string> labels);
+        IPrometheusMetricsRegistry RegistrateHistogram(string name, string description, IEnumerable<double> buckets, IEnumerable<string> labels);
 
         /// <summary>
         /// Register <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric.
         /// </summary>
         /// <param name="summary"><see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric definition.</param>
-        void RegisterSummary(Summary summary);
+        IPrometheusMetricsRegistry RegistrateSummary(Summary summary);
         /// <summary>
-        /// Create and register <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric.
+        /// Create and registrate <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric.
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Description of the metric.</param>
-        void RegisterSummary(string name, string description);
+        IPrometheusMetricsRegistry RegistrateSummary(string name, string description);
         /// <summary>
-        /// Create and register <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric.
+        /// Create and registrate <see href="https://prometheus.io/docs/concepts/metric_types/#summary">Summary</see> metric.
         /// </summary>
         /// <param name="name">Name of the metric.</param>
         /// <param name="description">Description of the metric.</param>
         /// <param name="labels">Labels of the metric.</param>
-        void RegisterSummary(string name, string description, IEnumerable<string> labels);
+        IPrometheusMetricsRegistry RegistrateSummary(string name, string description, IEnumerable<string> labels);
     }
 }

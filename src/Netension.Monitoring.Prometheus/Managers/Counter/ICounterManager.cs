@@ -6,7 +6,7 @@ namespace Netension.Monitoring.Prometheus
     /// <summary>
     /// Manage <see href="https://prometheus.io/docs/concepts/metric_types/#counter">Counter</see> metrics.
     /// </summary>
-    public interface ICounterCollection
+    public interface ICounterManager
     {
         /// <summary>
         /// Get <see href="https://prometheus.io/docs/concepts/metric_types/#counter">Counter</see> from the collection.
