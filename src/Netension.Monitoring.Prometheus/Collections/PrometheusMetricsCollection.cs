@@ -8,6 +8,7 @@ using System.Linq;
 namespace Netension.Monitoring.Prometheus.Collections
 {
     [ExcludeFromCodeCoverage]
+#pragma warning disable 1591
     public class PrometheusMetricsCollection : ICollection<MetricDefinition<Counter>>, ICollection<MetricDefinition<Gauge>>, ICollection<MetricDefinition<Histogram>>, ICollection<MetricDefinition<Summary>>
     {
         private readonly ICollection<MetricDefinition<Counter>> _counters = new List<MetricDefinition<Counter>>();
@@ -153,4 +154,5 @@ namespace Netension.Monitoring.Prometheus.Collections
             return _summaries.GetEnumerator();
         }
     }
+#pragma warning restore 1591
 }

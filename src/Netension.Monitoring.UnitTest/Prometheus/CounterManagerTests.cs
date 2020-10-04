@@ -14,7 +14,6 @@ namespace Netension.Monitoring.UnitTest.Prometheus
         private readonly NamesGenerator _namesGenerator = new NamesGenerator();
         private readonly ITestOutputHelper _outputHelper;
         private PrometheusMetricsCollection _collection;
-        private ILogger<CounterManagerTests> _logger;
 
         public CounterManagerTests(ITestOutputHelper outputHelper)
         {
@@ -26,8 +25,6 @@ namespace Netension.Monitoring.UnitTest.Prometheus
             _collection = new PrometheusMetricsCollection();
             var loggerFactory = new LoggerFactory()
                 .AddXUnit(_outputHelper);
-
-            _logger = loggerFactory.CreateLogger<CounterManagerTests>();
 
             return new CounterManager(_collection, loggerFactory);
         }

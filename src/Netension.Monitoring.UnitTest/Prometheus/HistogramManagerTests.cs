@@ -11,7 +11,7 @@ namespace Netension.Monitoring.UnitTest.Prometheus
 {
     public class HistogramManagerTests
     {
-        private NamesGenerator _namesGenerator = new NamesGenerator();
+        private readonly NamesGenerator _namesGenerator = new NamesGenerator();
         private readonly ITestOutputHelper _outputHelper;
         private PrometheusMetricsCollection _collection;
 
