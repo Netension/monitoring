@@ -3,6 +3,7 @@ using Netension.Monitoring.Core.Models;
 using Netension.Monitoring.Prometheus.Collections;
 using Prometheus;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Netension.Monitoring.Prometheus
@@ -12,7 +13,9 @@ namespace Netension.Monitoring.Prometheus
         private readonly ILogger<PrometheusMetricsRegistry> _logger;
         private readonly PrometheusMetricsCollection _metrics;
 
+        [ExcludeFromCodeCoverage]
         public ICounterManager CounterManager { get; }
+        [ExcludeFromCodeCoverage]
         public IGaugeManager GaugeManager { get; }
 
         public PrometheusMetricsRegistry(PrometheusMetricsCollection metrics, ICounterManager counterManager, IGaugeManager gaugeManager, ILoggerFactory loggerFactory)
@@ -97,7 +100,7 @@ namespace Netension.Monitoring.Prometheus
                 _logger.LogWarning("{name} metric has already registrated.", name);
                 return this;
             }
-            return RegistrateHistogram(name, description, buckets, labels);
+            return RegistrateHistogram(Metrics.CreateHistogram(name, description, new HistogramConfiguration { Buckets = buckets.ToArray(), LabelNames = labels.ToArray() }));
         }
 
         /// <inheritdoc/>
@@ -122,7 +125,7 @@ namespace Netension.Monitoring.Prometheus
                 _logger.LogWarning("{name} metric has already registrated.", name);
                 return this;
             }
-            return RegistrateSummary(name, description, labels);
+            return RegistrateSummary(Metrics.CreateSummary(name, description, labels.ToArray()));
         }
     }
 }
