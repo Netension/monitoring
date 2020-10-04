@@ -26,7 +26,7 @@ namespace Netension.Monitoring.UnitTest.Prometheus
         {
             _collection = new PrometheusMetricsCollection();
 
-            return new PrometheusMetricsRegistry(_collection, new Mock<ICounterManager>().Object, new Mock<IGaugeManager>().Object, new LoggerFactory().AddXUnit(_outputHelper));
+            return new PrometheusMetricsRegistry(_collection, new LoggerFactory().AddXUnit(_outputHelper));
         }
 
         #region Counter

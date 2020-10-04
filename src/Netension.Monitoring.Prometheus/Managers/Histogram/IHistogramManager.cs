@@ -6,7 +6,7 @@ namespace Netension.Monitoring.Prometheus
     /// <summary>
     /// Manage <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see> metrics.
     /// </summary>
-    public interface IHistogramCollection
+    public interface IHistogramManager
     {
         /// <summary>
         /// Get <see href="https://prometheus.io/docs/concepts/metric_types/#histogram">Histogram</see> from the collection.

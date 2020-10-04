@@ -7,6 +7,7 @@ namespace Netension.Monitoring.Prometheus.Managers
     /// <inheritdoc/>
     internal class CounterManager : ICounterManager
     {
+        private const string TYPE = "Counter";
         private readonly PrometheusMetricsCollection _metrics;
         private readonly ILogger<CounterManager> _logger;
 
@@ -32,11 +33,11 @@ namespace Netension.Monitoring.Prometheus.Managers
             var metric = this[name];
             if (metric == null)
             {
-                _logger.LogWarning("{name} {type} metric not found.", name, "Counter");
+                _logger.LogWarning("{name} {type} metric not found.", name, TYPE);
                 return;
             }
 
-            _logger.LogDebug("{name} {type} metric increase with {value}", name, "Counter", increment);
+            _logger.LogDebug("{name} {type} metric increase with {value}.", name, TYPE, increment);
             metric.WithLabels(labels).Inc(increment);
         }
 
@@ -46,7 +47,7 @@ namespace Netension.Monitoring.Prometheus.Managers
             var metric = this[name];
             if (metric == null)
             {
-                _logger.LogWarning("{name} {type} metric not found.", name, "Counter");
+                _logger.LogWarning("{name} {type} metric not found.", name, TYPE);
                 return;
             }
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Netension.Monitoring.Core.Models;
 using Netension.Monitoring.Prometheus.Collections;
+using Netension.Monitoring.Prometheus.Managers;
 using Prometheus;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -12,18 +13,19 @@ namespace Netension.Monitoring.Prometheus
     {
         private readonly ILogger<PrometheusMetricsRegistry> _logger;
         private readonly PrometheusMetricsCollection _metrics;
+        private readonly ILoggerFactory _loggerFactory;
 
         [ExcludeFromCodeCoverage]
-        public ICounterManager CounterManager { get; }
-        [ExcludeFromCodeCoverage]
-        public IGaugeManager GaugeManager { get; }
+        public ICounterManager CounterManager => new CounterManager(_metrics, _loggerFactory);
 
-        public PrometheusMetricsRegistry(PrometheusMetricsCollection metrics, ICounterManager counterManager, IGaugeManager gaugeManager, ILoggerFactory loggerFactory)
+        [ExcludeFromCodeCoverage]
+        public IGaugeManager GaugeManager => new GaugeManager(_metrics, _loggerFactory);
+
+        public PrometheusMetricsRegistry(PrometheusMetricsCollection metrics, ILoggerFactory loggerFactory)
         {
             _logger = loggerFactory.CreateLogger<PrometheusMetricsRegistry>();
             _metrics = metrics;
-            CounterManager = counterManager;
-            GaugeManager = gaugeManager;
+            _loggerFactory = loggerFactory;
         }
 
         /// <inheritdoc/>

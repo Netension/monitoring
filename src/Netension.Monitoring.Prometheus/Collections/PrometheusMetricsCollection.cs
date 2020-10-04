@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Netension.Monitoring.Prometheus.Collections
 {
@@ -12,7 +11,6 @@ namespace Netension.Monitoring.Prometheus.Collections
     public class PrometheusMetricsCollection : ICollection<MetricDefinition<Counter>>, ICollection<MetricDefinition<Gauge>>, ICollection<MetricDefinition<Histogram>>, ICollection<MetricDefinition<Summary>>
     {
         private readonly ICollection<MetricDefinition<Counter>> _counters = new List<MetricDefinition<Counter>>();
-
         private readonly ICollection<MetricDefinition<Gauge>> _gauges = new List<MetricDefinition<Gauge>>();
         private readonly ICollection<MetricDefinition<Histogram>> _histograms = new List<MetricDefinition<Histogram>>();
         private readonly ICollection<MetricDefinition<Summary>> _summaries = new List<MetricDefinition<Summary>>();
@@ -27,6 +25,14 @@ namespace Netension.Monitoring.Prometheus.Collections
         public MetricDefinition<Gauge> GetGauge(string name)
         {
             return _gauges.FirstOrDefault(c => c.Key.Equals(name));
+        }
+        public MetricDefinition<Histogram> GetHistogram(string name)
+        {
+            return _histograms.FirstOrDefault(c => c.Key.Equals(name));
+        }
+        public MetricDefinition<Summary> GetSummary(string name)
+        {
+            return _summaries.FirstOrDefault(c => c.Key.Equals(name));
         }
 
         public bool Contains(string key)
