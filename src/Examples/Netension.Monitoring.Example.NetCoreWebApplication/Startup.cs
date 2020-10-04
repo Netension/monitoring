@@ -11,14 +11,15 @@ namespace Netension.Monitoring.Example.NetCoreWebApplication
 {
     public class Startup
     {
-        public static ILoggerFactory LoggerFactory { get; set; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddPrometheusMetrics(LoggerFactory)
-                .RegistrateCounter("example_counter_metric", "Example counter metric.");
+            services.AddPrometheusMetrics((registry, provider) =>
+            {
+                registry
+                    .RegistrateCounter("example_counter_metric", "Example counter metric.");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

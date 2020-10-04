@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -16,13 +15,6 @@ namespace Netension.Monitoring.Example.NetCoreWebApplication
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole(options =>
-                    {
-                        options.DisableColors = false;
-                    })
-                    .SetMinimumLevel(LogLevel.Trace));
-                    webBuilder.ConfigureServices(services => services.AddSingleton(loggerFactory));
-                    Startup.LoggerFactory = loggerFactory;
                     webBuilder.UseStartup<Startup>();
                 });
     }
