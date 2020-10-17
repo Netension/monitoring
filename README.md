@@ -31,10 +31,10 @@ Makes easier to use the [Prometheus](https://prometheus.io/) metrics.
 
 The package define the following interfaces and types:
 - __IPrometheusMetricsRegistry__: Manage the registrations of [Prometheus](https://prometheus.io/) metrics.
-- __ICounterCollection__: Manage [Prometheus](https://prometheus.io/)'s [Counter](https://prometheus.io/docs/concepts/metric_types/#counter) metric type.
-- __IGaugeCollection__: Manage [Prometheus](https://prometheus.io/)'s [Gauge](https://prometheus.io/docs/concepts/metric_types/#gauge) metric type.
-- __IHistogramCollection__: Manage [Prometheus](https://prometheus.io/)'s [Histogram](https://prometheus.io/docs/concepts/metric_types/#histogram) metric type.
-- __ISummaryCollection__: Manage [Prometheus](https://prometheus.io/)'s [Summary](https://prometheus.io/docs/concepts/metric_types/#summary) metric type.
+- __ICounterManager__: Manage [Prometheus](https://prometheus.io/)'s [Counter](https://prometheus.io/docs/concepts/metric_types/#counter) metric type.
+- __IGaugeManager__: Manage [Prometheus](https://prometheus.io/)'s [Gauge](https://prometheus.io/docs/concepts/metric_types/#gauge) metric type.
+- __IHistogramManager__: Manage [Prometheus](https://prometheus.io/)'s [Histogram](https://prometheus.io/docs/concepts/metric_types/#histogram) metric type.
+- __ISummaryManager__: Manage [Prometheus](https://prometheus.io/)'s [Summary](https://prometheus.io/docs/concepts/metric_types/#summary) metric type.
 
 ### Usage in [.NET Core](https://docs.microsoft.com/en-us/dotnet/core/introduction)
 __1. step - Install NuGet:__ [Netension.Monitoring.Prometheus](https://www.nuget.org/packages/Netension.Monitoring.Prometheus/) NuGet package.
