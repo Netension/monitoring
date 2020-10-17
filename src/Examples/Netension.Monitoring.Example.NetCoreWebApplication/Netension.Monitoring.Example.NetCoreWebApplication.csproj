@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <CodeAnalysisRuleSet>..\..\.sonarlint\netension_monitoringcsharp.ruleset</CodeAnalysisRuleSet>
+    <StartupObject>Netension.Monitoring.Example.NetCoreWebApplication.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.8" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.8.2" />
   </ItemGroup>
 
   <ItemGroup>
