@@ -43,13 +43,29 @@ __2. step - Register metrics:__ Register neccessary types and metrics with ```Ad
 ```csharp
 public void Configure(IServiceCollection services)
 {
-    services.AddPrometheusMetrics((registry, context) => 
+    public void ConfigureServices(IServiceCollection services)
     {
-        registry.RegisterCounter("counter", "Example Counter.");
-        registry.RegisterGauge("gauge", "Example Gauge.");
-        registry.RegisterHistogram("histogram", "Example Histogram.");
-        registry.RegisterSummary("summary", "Example Summary.");
-    });
+        services.AddPrometheusMetrics((registry, provider) =>
+        {
+            registry.RegistrateCounter("example_counter_metric", "Example counter metric.");
+            registry.RegistrateGauge("example_gauge_metric", "Example gauge metric.");
+            registry.RegistrateHistogram("example_histogram_metric", "Example histogram metric.", new double[] { 1.0, 2.0, 3.0 });
+            registry.RegistrateSummary("example_summary_metric", "Example summary metric.");
+        });
+    }
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ICounterManager counterManager)
+    {
+        ...
+        
+        app.UseEndpoints(endpoints =>
+        {
+            ...
+            endpoints.MapMetrics();
+            ...
+        });
+        
+        ...
+    }
 }
 ```
 
@@ -73,17 +89,27 @@ public class ExampleClass
 
     public void Method()
     {
-        // Push Counter value
-        _counterCollection.Increase("counter");
+        // Counter
+        _counterCollection.Increase("example_counter_metric");
+        _counterCollection.Increase("example_counter_metric", 2.0);
+        _counterCollection.Set("example_counter_metric", 5.0);
 
-        // Push Gauge value
-        _gaugeCollection.Increase("gauge");
+        // Gauge
+        _gaugeManager.Increase("example_gauge_metric");
+        _gaugeManager.Increase("example_gauge_metric", 2.0);
+        _gaugeManager.Decrease("example_gauge_metric");
+        _gaugeManager.Decrease("example_gauge_metric", 2.0);
+        _gaugeManager.Set("example_gauge_metric", 5.0);
 
-        // Push Histogram value
-        _histogramCollection.Increase("histogram", 5.0);
+        // Histogram
+        _histogramManager.Observe("example_histogram_metric", 2.0);
 
-        // Push Summary value
-        _summaryCollection.Increase("summary", 5.0);
+        // Summary
+        _summaryManager.Observe("example_summary_metric", 2.0);
+        using (var stopwatch = _summaryManager.MeasureDuration("example_summary_metric"))
+        {
+            await Task.Delay(TimeSpan.FromSeconds(3));
+        }
 
        // Push duration
        using (_summaryCollection.StartDurationMeasurement("summary"))
