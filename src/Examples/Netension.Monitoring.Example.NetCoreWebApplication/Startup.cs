@@ -5,10 +5,8 @@ using Microsoft.Extensions.Hosting;
 using Netension.Monitoring.Prometheus;
 using Prometheus;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Reflection;
 
-[assembly: AssemblyInformationalVersion("1.0.0-alpha.14")]
 namespace Netension.Monitoring.Example.NetCoreWebApplication
 {
     public class Startup

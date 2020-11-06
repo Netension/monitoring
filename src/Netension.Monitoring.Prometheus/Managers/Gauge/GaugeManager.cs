@@ -66,12 +66,12 @@ namespace Netension.Monitoring.Prometheus.Managers
             if (metric.Value < value)
             {
                 _logger.LogDebug("Increment value of {name} metric to {value}.", name, value);
-                metric.IncTo(value);
+                metric.WithLabels(labels).IncTo(value);
             }
             else if (metric.Value > value)
             {
                 _logger.LogDebug("Decrement value of {name} metric to {value}.", name, value);
-                metric.DecTo(value);
+                metric.WithLabels(labels).DecTo(value);
             }
         }
     }
