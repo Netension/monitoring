@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Netension.Monitoring.Core", "Netension.Monitoring.Core\Netension.Monitoring.Core.csproj", "{B225FF89-92BF-48D9-B184-E3B300BB3562}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Netension.Monitoring.Prometheus", "Netension.Monitoring.Prometheus\Netension.Monitoring.Prometheus.csproj", "{85FDD45E-21AC-47E3-90AF-B3DABE2BF735}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Netension.Monitoring.UnitTest", "Netension.Monitoring.UnitTest\Netension.Monitoring.UnitTest.csproj", "{429B3378-FA48-4A0F-8B73-A1EFA784E4C1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{B7F409BA-BA94-4B09-A288-CF40E4139E79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netension.Monitoring.Example.NetCoreWebApplication", "Examples\Netension.Monitoring.Example.NetCoreWebApplication\Netension.Monitoring.Example.NetCoreWebApplication.csproj", "{AE7FB3B1-B55E-46B9-A8C7-CD9E6A8E5197}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B225FF89-92BF-48D9-B184-E3B300BB3562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B225FF89-92BF-48D9-B184-E3B300BB3562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B225FF89-92BF-48D9-B184-E3B300BB3562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B225FF89-92BF-48D9-B184-E3B300BB3562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85FDD45E-21AC-47E3-90AF-B3DABE2BF735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85FDD45E-21AC-47E3-90AF-B3DABE2BF735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85FDD45E-21AC-47E3-90AF-B3DABE2BF735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85FDD45E-21AC-47E3-90AF-B3DABE2BF735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{429B3378-FA48-4A0F-8B73-A1EFA784E4C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{429B3378-FA48-4A0F-8B73-A1EFA784E4C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{429B3378-FA48-4A0F-8B73-A1EFA784E4C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{429B3378-FA48-4A0F-8B73-A1EFA784E4C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE7FB3B1-B55E-46B9-A8C7-CD9E6A8E5197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE7FB3B1-B55E-46B9-A8C7-CD9E6A8E5197}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE7FB3B1-B55E-46B9-A8C7-CD9E6A8E5197}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE7FB3B1-B55E-46B9-A8C7-CD9E6A8E5197}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AE7FB3B1-B55E-46B9-A8C7-CD9E6A8E5197} = {B7F409BA-BA94-4B09-A288-CF40E4139E79}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4015E437-02BA-413F-AE45-4B6757BF2A36}
+	EndGlobalSection
+EndGlobal

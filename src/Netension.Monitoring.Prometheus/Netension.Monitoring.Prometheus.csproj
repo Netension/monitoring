@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Bence, Mihucza</Authors>
+    <PackageIcon>logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/Netension/monitoring</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>monitoring, prometheus</PackageTags>
+    <CodeAnalysisRuleSet>..\.sonarlint\netension_monitoringcsharp.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>.\Netension.Monitoring.Prometheus\Documentation\Netension.Monitoring.Prometheus.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Netension.Monitoring.Prometheus\**" />
+    <EmbeddedResource Remove="Netension.Monitoring.Prometheus\**" />
+    <None Remove="Netension.Monitoring.Prometheus\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\netension_monitoring\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GitVersionTask" Version="5.3.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Netension.Core" Version="1.0.0-alpha.1" />
+    <PackageReference Include="prometheus-net.AspNetCore" Version="3.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Netension.Monitoring.Core\Netension.Monitoring.Core.csproj" />
+  </ItemGroup>
+
+</Project>
